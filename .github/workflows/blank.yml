@@ -1,8 +1,8 @@
-on: [push, repository_dispatch]
+on: [repository_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.client_payload.os }}
     steps:
     - run: echo $payload
       env:
