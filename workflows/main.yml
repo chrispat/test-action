@@ -1,0 +1,9 @@
+on: [repository_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    actions:
+    - run: echo $payload
+      env:
+        payload: ${{ toJson(github) }}
