@@ -1,8 +1,14 @@
-on: [repository_dispatch]
+on:
+ push:
+   branches:
+   - '*'
+   paths:
+   - '*'
+   - '!**/*.md'
 
 jobs:
   build:
-    runs-on: ${{ github.event.client_payload.os }}
+    runs-on: ubuntu-latest
     steps:
     - run: echo $payload
       env:
