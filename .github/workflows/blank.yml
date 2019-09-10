@@ -1,6 +1,6 @@
 on:
  create:
-   ref_type: tag
+   ref_type: branch
 
 jobs:
   build:
