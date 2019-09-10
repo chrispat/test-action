@@ -1,11 +1,6 @@
 on:
- push:
-   branches:
-   - '*'
-   paths:
-   - '*'
-   - '!*.md'
-   - '!**/*.md'
+ create:
+   ref_type: tag
 
 jobs:
   build:
