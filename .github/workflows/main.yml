@@ -9,8 +9,9 @@ jobs:
       - uses: actions/github-script@0.3.0
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |            
+          script: |             
+            const core = require('@actions/core');
             const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
-            console.log(commit_details.data.author.date);
+            core.setOutput(commit_details.data.author.date);
     
    
