@@ -10,7 +10,11 @@ jobs:
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
           script: |
-            const commit_details = await github.git.getCommit({context.repo.owner, context.repo.repo, context.sha});
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            conxt sha = context.sha;
+            
+            const commit_details = await github.git.getCommit({owner, repo, sha});
             console.log(commit_details.author.date);
     
    
