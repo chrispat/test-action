@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: 
+      - boolean-matrix
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config: 
+        - {run-it: true}
+        - {run-it: false}
+
+    steps:
+    - name: Run a one-line script
+      run: echo Hello, world!
+      if: matrix.config.run-it
+ 
