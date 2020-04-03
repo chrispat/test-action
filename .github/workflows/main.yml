@@ -5,18 +5,26 @@ on:
       - master
 
 jobs:
-  diff:
-    runs-on: ubuntu-latest
+  container-test:
+    strategy:
+      matrix:
+        container: ['alpine', '']
+    runs-on: [ubuntu-latest]
+    container: ${{ matrix.container }}
     steps:
-      - uses: actions/github-script@0.3.0
-        id: author-date
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |             
-            const core = require('@actions/core');
-            const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
-            return commit_details.data.author.date
-      - run: echo $COMMITTED_AT
-        env:
-          COMMITTED_AT: ${{ steps.author-date.outputs.result }}
+      - run: cat /etc/os-release
+ # diff:
+ #   runs-on: ubuntu-latest
+ #   steps:
+ #     - uses: actions/github-script@0.3.0
+ #       id: author-date
+ #       with:
+ #         github-token: ${{secrets.GITHUB_TOKEN}}
+ #         script: |             
+ #           const core = require('@actions/core');
+ #           const commit_details = await github.git.getCommit({owner: context.repo.owner, repo: context.repo.repo, commit_sha: context.sha});
+ #           return commit_details.data.author.date
+ #     - run: echo $COMMITTED_AT
+ #       env:
+ #         COMMITTED_AT: ${{ steps.author-date.outputs.result }}
    
